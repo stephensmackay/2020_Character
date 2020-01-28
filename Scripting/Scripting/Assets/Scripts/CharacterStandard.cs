@@ -5,7 +5,9 @@ using System.Collections.Generic;
 [CreateAssetMenu]
 public class CharacterStandard : CharacterBase
 {
-    public float jumpSpeed =30f, gravity = 3f;
+    public float jumpSpeed = 30f, gravity = 3f;
+
+    public bool canPlay = true; 
         
     public override void Move()
     {
@@ -19,14 +21,31 @@ public class CharacterStandard : CharacterBase
         Controller.Move(Location * Time.deltaTime);
 
         
-        //if(Input.GetButton("Jump"))
-        // {
-        //     Position.y = jumpSpeed;
-        // }
-        // else if (Controller.isGrounded)
-        // {
-        //     Position.y = 0;
-        // }
+        if(Input.GetButton("Jump")) 
+        {
+             Position.y = jumpSpeed;
+        }
+        else if (Controller.isGrounded)
+        {
+             Position.y = 0;
+        }
+
+        //Controller.center = Location;
+
+        //if (Controller.enabled = true)
+        //{
+        //    canPlay = true;
+        //}
+        //else if (Controller.enabled = false)
+        //{
+        //    canPlay = false;
+        //}
+       
+       
     }
+    
+    
+    
 }
+
 
