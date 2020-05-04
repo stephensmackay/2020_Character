@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 
-public class ControlCharacter : MonoBehaviour
+public class TestController : MonoBehaviour
 {
 
     public CharacterController controller;
@@ -11,20 +10,16 @@ public class ControlCharacter : MonoBehaviour
 
     public float speed = 12f, orientSpeed = 4f, gravity = -9.81f, jumpSpeed = 40f;
 
-    public FloatData health;
+    //public FloatData health;
 
-    public GameObject endGameCanvas;
+    //public GameObject endGameCanvas;
 
     public int jumpCount = 2;
-
-    
-
     
    
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        
     }
 
     void Update()
@@ -36,7 +31,7 @@ public class ControlCharacter : MonoBehaviour
             Orientation.y = Input.GetAxis("Horizontal") * orientSpeed;
             controller.transform.Rotate(Orientation);
             Location = controller.transform.TransformDirection(Location);
-            jumpCount = 1;
+            jumpCount = 2;
         }
         
         
@@ -52,37 +47,32 @@ public class ControlCharacter : MonoBehaviour
                 Location.y = jumpSpeed;
                 jumpCount--;
             }
+            
+            
         }
-
-
+        
+        
         Location.y += gravity;
         
         controller.Move(Location * Time.deltaTime);
 
-              
-        if (health.value <= 0)
-        {
-            TurnOnAndOff(endGameCanvas);
-        }
-        else
-        {
-            return;
-        }
+        //if (health.value <= 0)
+        //{
+        //    TurnOnAndOff(endGameCanvas);
+        //}
+        //else
+        //{
+        //    return;
+        //}
 
-        void TurnOnAndOff(GameObject obj)
-        {
-            obj.SetActive(true);
-        }
+        //void TurnOnAndOff(GameObject obj)
+        //{
+        //    obj.SetActive(true);
+        //}
 
-     
+       
     }
-
-    public void CheckpointReset(Vector3Data data)
-    {
-        transform.position = data.Vector3Obj;
-    }
-
-   
+    
     
 
 }
